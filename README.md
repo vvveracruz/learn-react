@@ -1,6 +1,10 @@
 # learn-react
 Repo for [React Udemy course by Academind][1].
 
+```
+npx create-react-app [name] --scripts-version 1.1.5
+```
+
 ##### 📁 01-intro
 - A basic react app with only `index.js` and `index.html` files.
 

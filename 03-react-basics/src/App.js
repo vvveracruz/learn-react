@@ -9,8 +9,9 @@ class App extends Component {
       { name: 'Alice', age: 23 },
       { name: 'Ve', age: 21 },
       { name: 'Nathan', age: 24 }
-    ]
-  };
+    ],
+    showPersons: false
+  }
 
   switchNameHandler = ( newName ) => {
     // setState is a method from Component, it is available because
@@ -32,6 +33,11 @@ class App extends Component {
     ] } )
   }
 
+  togglePersonsHandler = () => {
+    const doesShow = this.state.showPersons;
+    this.setState( { showPersons: !doesShow } );
+  }
+
   render() {
     const buttonStyle = {
       backgroundColor: 'white',
@@ -48,31 +54,32 @@ class App extends Component {
 
         <button
           style = { buttonStyle }
-          onClick = {
-            () => this.switchNameHandler( 'Lucas' )
-          } > Switch Name
+          onClick = {this.togglePersonsHandler } > Button
         </button>
-
-        <Person
-          name = { this.state.persons[0].name }
-          age = { this.state.persons[0].age }
-          changed = { this.nameChangedHandler }
-        />
-        <Person
-          name = { this.state.persons[1].name }
-          age = { this.state.persons[1].age }
-          click = { this.switchNameHandler.bind( this, 'Anna') }
-        >
-          My hobbies: racing. </Person>
-        <Person
-          name = { this.state.persons[2].name }
-          age = { this.state.persons[2].age }
-        />
-        <Person
-          name = { this.state.persons[3].name }
-          age = { this.state.persons[3].age }
-        />
-
+        { this.state.showPersons ?
+          <div>
+            <Person
+              name = { this.state.persons[0].name }
+              age = { this.state.persons[0].age }
+              changed = { this.nameChangedHandler }
+            />
+            <Person
+              name = { this.state.persons[1].name }
+              age = { this.state.persons[1].age }
+              click = { this.switchNameHandler.bind( this, 'Anna') }
+            >
+              My hobbies: racing. </Person>
+            <Person
+              name = { this.state.persons[2].name }
+              age = { this.state.persons[2].age }
+            />
+            <Person
+              name = { this.state.persons[3].name }
+              age = { this.state.persons[3].age }
+            />
+          </div> :
+          null
+        }
       </div>
 
     );
